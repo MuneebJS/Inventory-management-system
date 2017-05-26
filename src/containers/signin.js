@@ -1,12 +1,11 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import RaisedButton from 'material-ui/RaisedButton';
 import { signin } from '../store/actions/authActions'
 import { connect } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-// injectTapEventPlugin();
+
 class Signin extends React.Component {
     constructor() {
         super();

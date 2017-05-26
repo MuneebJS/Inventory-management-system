@@ -1,27 +1,33 @@
-import authActions from "./../actions/authActions"
+import authActions from "./../actions/const"
 
 
-// const INITIAL_STATE = {
-//     authUser : [
-//         users = {
-//             name: 'No name',
-//         }
-//     ]
-// }
 
-export const authReducer = (state = {
-    users : {
-        name: 'No name',
-    }
-}, action) => {
-    switch(action.type) {   
-        case authActions.SIGNUP :
+const INITIAL_STATE = {
+    authUser: {},
+    isRegistered: false,
+    isAuthenticated: false,
+    errorMessage: {},
+    isSuccess: false
+}
+
+export const authReducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+        case authActions.SIGNUP:
             return {
                 ...state,
-                users : {
-                    name: payload
-                }
+                isRegistered: true,
             }
-            default : return state
+        case authActions.SIGNUP:
+            return {
+                ...state,
+                isAuthenticated: true
+            }
+        case authActions.SIGNUP_SUCCESSFUL:
+            return {
+                ...state,
+                isSuccess: true,
+                errorMessage : {}
+            }
+        default: return state
     }
 }

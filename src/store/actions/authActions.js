@@ -1,27 +1,49 @@
-export default class AuthActions {
-    static SIGNUP = 'SIGNUP';
-    static SIGNUP_SUCCESSFUL = 'SIGNUP_SUCCESSFUL';
-    static SIGNUP_REJECTED = 'SIGNUP_REJECTED';
-
-
-    static signup(payload) {
-        return {
-            //I will replace AuthActions with this
-            type: AuthActions.SIGNUP,
-            data: payload
-        }
+import AuthActions from './const';
+import * as firebase from 'firebase'
+import {browserHistory} from 'react-router'
+const signin_successful = () => {
+    return {
+        type: AuthActions.SIGNUP_SUCCESSFUL
     }
-     static signup_successful(authUser) {
-        return {
-            type: AuthActions.SIGNUP_SUCCESSFUL,
-            payload: authUser
+}
 
-        }
+export const signup = (credentials, dispatch) => {
+    return dispatch => {
+        firebase.auth()
+            .createUserWithEmailAndPassword(credentials.email, credentials.pass)
+            .then(
+                () => {
+                    browserHistory.push('signin')
+                },
+                () => {
+                    dispatch(signin_successful())
+                },
+            (user) => {
+                console.log("signup successful")
+                console.log(user)
+            }
+            )
+            .catch(
+            (error) => {
+                console.log("signup rejected")
+                console.log(error)
+            })
     }
-     static signup_rejected(error) {
-        return {
-            type: AuthActions.SIGNUP_REJECTED,
-            payload: error
-        }
+}
+
+export const signin = (credentials) => {
+    return dispatch => {
+        firebase.auth()
+        .signInWithEmailAndPassword(credentials.email, credentials.pass)
+        .then(
+            (user) => {
+                console.log(user)
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error)
+            }
+        )
     }
 }

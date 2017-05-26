@@ -2,23 +2,24 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import RaisedButton from 'material-ui/RaisedButton';
-import { signup } from '../store/actions/authActions'
+import { signin } from '../store/actions/authActions'
 import { connect } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 // injectTapEventPlugin();
-class Signup extends React.Component {
+class Signin extends React.Component {
     constructor() {
         super();
     }
 
 
-    signup() {
+    signin() {
         var credentials = {
             email: this.refs.email.getValue(),
             pass: this.refs.pass.getValue()
         }
         console.log(credentials.email, credentials.pass)
-        this.props.signup(credentials)
+        this.props.signin(credentials)
     }
     render() {
         return (
@@ -36,12 +37,11 @@ class Signup extends React.Component {
                     ref="pass"
                 />
                 {/*<h1>{this.props.user.users.name}</h1>*/}
-                <RaisedButton label="Sign Up"
+                <RaisedButton label="Sign in"
                     onClick={
-                        this.signup.bind(this)
+                        this.signin.bind(this)
                     }
                     primary={true} />
-                    {/*{this.props.children}*/}
             </div>
             </MuiThemeProvider>
         )
@@ -57,9 +57,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signup: (credentials) => {
-            dispatch(signup(credentials));
+        signin: (credentials) => {
+            dispatch(signin(credentials));
         }
     }
 }
-export default connect(null, mapDispatchToProps)(Signup)
+ export default connect(null, mapDispatchToProps)(Signin)

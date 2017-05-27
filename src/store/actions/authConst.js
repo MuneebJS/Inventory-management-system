@@ -3,3 +3,4 @@ export default class AuthActions {
     static SIGNUP_SUCCESSFUL = 'SIGNUP_SUCCESSFUL';
     static SIGNUP_REJECTED = 'SIGNUP_REJECTED';
 }
+

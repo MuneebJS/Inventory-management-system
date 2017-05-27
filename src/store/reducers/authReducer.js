@@ -1,4 +1,4 @@
-import authActions from "./../actions/const"
+import authActions from "./../actions/authConst"
 
 
 
